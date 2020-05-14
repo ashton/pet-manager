@@ -1,0 +1,16 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+LAST_SUCCESS_BUILD_STAMP	watcher.js	/^var LAST_SUCCESS_BUILD_STAMP = localStorage.getItem('LAST_SUCCESS_BUILD_STAMP') || 0;$/;"	v
+React	src/ReasonUsingJSUsingReason/ReactJSCard.js	/^var React = require('react');$/;"	v
+ReactDOM	src/ReasonUsingJSUsingReason/ReactJSCard.js	/^var ReactDOM = require('react-dom');$/;"	v
+ReactJSComponent	src/ReasonUsingJSUsingReason/ReactJSCard.js	/^var ReactJSComponent = function() {$/;"	f
+ReasonReactCard	src/ReasonUsingJSUsingReason/ReactJSCard.js	/^var ReasonReactCard = require('.\/ReasonReactCard.bs').make;$/;"	v
+module.exports.entry	UNUSED_webpack.config.js	/^  entry: '.\/src\/Index.bs.js',$/;"	p
+module.exports.mode	UNUSED_webpack.config.js	/^  mode: 'production',$/;"	p
+module.exports.output	UNUSED_webpack.config.js	/^  output: {$/;"	p
+webSocketPort	watcher.js	/^var webSocketPort = 9999;$/;"	v
+websocketReloader	watcher.js	/^var websocketReloader;$/;"	v
