@@ -4,7 +4,7 @@ open NavStyles
 [@react.component]
 let make = () => {
   <nav className=appHeader role="navigation" ariaLabel="main navigation" id="app-header">
-    <div className="navbar-brand column is-2 is-paddingless">
+    <div className=navbarBrand>
       <a className="navbar-item" href="index.html">
         {s("BULMA ADMIN")}
       </a>
@@ -37,7 +37,7 @@ let make = () => {
             <figure className="image avatar is-32x32">
                 <img className="is-rounded" src="images/user1.png" />
             </figure>
-            {s("&nbsp; Hi, nafplann")}
+            <span dangerouslySetInnerHTML={{"__html": "&nbsp; Hi, nafplann"}} />
           </a>
           <div className="navbar-dropdown is-right">
             <a className="navbar-item">
