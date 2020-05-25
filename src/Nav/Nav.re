@@ -6,7 +6,7 @@ let make = () => {
   <nav className=appHeader role="navigation" ariaLabel="main navigation" id="app-header">
     <div className=navbarBrand>
       <a className="navbar-item" href="index.html">
-        {s("BULMA ADMIN")}
+        {s("Pets Manager")}
       </a>
       <a role="button" className="navbar-burger" ariaLabel="menu" ariaExpanded={false}>
         <span ariaHidden={true}></span>

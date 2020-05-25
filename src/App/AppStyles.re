@@ -21,3 +21,10 @@ let appContent = merge([
   ]),
   "columns"
 ])
+
+let pageContent = merge([
+  style([
+    padding(rem(2.0))
+  ]),
+  "column is-10"
+])

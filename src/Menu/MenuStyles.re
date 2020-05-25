@@ -1,4 +1,4 @@
-open Css;
+open Css
 
 let navigation = merge([
   style([

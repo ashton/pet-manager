@@ -1,5 +1,5 @@
 
-open Css;
+open Css
 
 let appHeader = merge([
   style([
