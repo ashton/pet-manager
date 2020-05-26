@@ -1,15 +1,19 @@
-type breadcrumbItem = {
-  name: string,
-  url: option(string),
-  active: bool
-};
+module Breadcrumb = {
+  [@bs.deriving accessors]
+  type item = {
+    name: string,
+    description: option(string),
+    url: option(string),
+    active: bool
+  };
 
-type breadcrumbs = list(breadcrumbItem);
+  type path = list(item);
+}
 
-type actions = UpdateBreadcrumb(breadcrumbs)
+type actions = UpdateBreadcrumb(Breadcrumb.path)
 
 type state = {
-  breadcrumb: breadcrumbs
+  breadcrumb: Breadcrumb.path
 };
 
 let initialState: state = { breadcrumb: [] };
