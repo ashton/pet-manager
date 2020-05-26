@@ -16,7 +16,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@glennsl/bs-json": "^5.0.2",
     "bs-css-emotion": "^1.2.0",
+    "bs-fetch": "^0.5.2",
     "bulma": "^0.8.2",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
