@@ -21,6 +21,13 @@ let getSize = (pet: pet) =>
   | Large => "grande"
   };
 
+let getAge = (pet: pet) => {
+  let now = Js.Date.fromFloat(Js.Date.now());
+
+  DateFns.differenceInYears(now, pet.birthdate)
+  ->Js.Int.toString;
+}
+
 module Decode = {
   let pet = json =>
     Json.Decode.{

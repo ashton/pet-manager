@@ -25,13 +25,11 @@ let make = () => {
   ]);
 
   <>
-    <div className="colunms">
-      <div className="column is-one-third">
+    <div className="columns">
       {pets
       ->List.map(item => <PetCard key=item.id pet=item />)
       ->List.toArray
       ->React.array}
-      </div>
     </div>
 
     <div className="control">
