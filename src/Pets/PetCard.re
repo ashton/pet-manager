@@ -9,6 +9,8 @@ let getIconByKind = (pet: PetsModel.pet) =>
 
 [@react.component]
 let make = (~pet: PetsModel.pet) => {
+  let age = PetsModel.getAge(pet);
+
   <div className="column is-one-third">
     <div className=card>
       <div className="card-content">
@@ -24,10 +26,10 @@ let make = (~pet: PetsModel.pet) => {
               <p className="subtitle is-6">{s(pet.breed)}</p>
               <ul>
                 <li>
-                  <span>{s(PetsModel.getAge(pet) ++ " anos")}</span>
+                  <span>{s(age->Js.Int.toString ++ pluralize(age, " ano", " anos"))}</span>
                 </li>
                 <li>
-                  <span>{s("porte " ++ PetsModel.getSize(pet))}</span>
+                  <span>{s("porte " ++ PetsModel.Size.toString(pet.size))}</span>
                 </li>
                 <li>
                   <span>{s(Js.Float.toFixed(pet.weight) ++ " kg")}</span>

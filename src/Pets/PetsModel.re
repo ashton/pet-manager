@@ -1,10 +1,45 @@
-type kind_t = Dog | Cat;
-type size_t = Small | Medium | Large;
+open Belt;
+
+module Kind {
+  type t = Dog | Cat;
+
+  let toString = (kind: t): string => 
+    switch kind {
+    | Dog => "cachorro"
+    | Cat => "gato"
+    };
+
+  let fromString = (kind: string): Result.t(t, string) =>
+    switch kind->Js.String.toLowerCase {
+    | "dog" => Ok(Dog)
+    | "cat" => Ok(Cat)
+    | _ => Error("invalid kind")
+    };
+}
+
+module Size {
+  type t = Small | Medium | Large;
+
+  let toString = (size: t): string =>
+    switch size {
+    | Small => "pequeno"
+    | Medium => {j|médio|j}
+    | Large => "grande"
+    };
+
+  let fromString = (size: string): Result.t(t, string) =>
+    switch size->Js.String.toLowerCase {
+    | "small" => Ok(Small)
+    | "medium" => Ok(Medium)
+    | "large" => Ok(Large)
+    | _ => Error("invalid size")
+    };
+}
 
 [@bs.deriving accessors]
 type pet = {
-  kind: kind_t,
-  size: size_t,
+  kind: Kind.t,
+  size: Size.t,
   id: string,
   name: string,
   breed: string,
@@ -14,18 +49,10 @@ type pet = {
 
 type pets = list(pet);
 
-let getSize = (pet: pet) => 
-  switch pet.size {
-  | Small => "pequeno"
-  | Medium => {j|médio|j}
-  | Large => "grande"
-  };
-
 let getAge = (pet: pet) => {
   let now = Js.Date.fromFloat(Js.Date.now());
 
   DateFns.differenceInYears(now, pet.birthdate)
-  ->Js.Int.toString;
 }
 
 module Decode = {
@@ -37,19 +64,12 @@ module Decode = {
       weight: json |> field("weight", float),
       birthdate: json |> field("birthdate", date),
       kind: json |> map((kind_) => {
-        switch kind_ {
-        | "Dog" => Dog
-        | "Cat" => Cat
-        | _ => raise(DecodeError("Invalid kind"))
-        };
+        Kind.fromString(kind_)
+        ->Result.getExn
       }, field("kind", string)),
       size: json |> map((size_) => {
-        switch size_ {
-        | "Small" => Small
-        | "Medium" => Medium
-        | "Large" => Large
-        | _ => raise(DecodeError("Invalid size"))
-        };
+        Size.fromString(size_)
+        ->Result.getExn
       }, field("size", string))
     }
 
