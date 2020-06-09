@@ -38,6 +38,10 @@ let breadcrumb = merge([
       padding(em(0.75))
     ]),
 
+    selector("& li a", [
+      padding(em(0.75))
+    ]),
+
     selector("& li span.is-active", [
       color(hex("8D68AB"))
     ])

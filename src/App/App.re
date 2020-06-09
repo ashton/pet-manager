@@ -1,11 +1,6 @@
 open AppStyles
+open Routes
 
-let renderContent = (url) => {
-  switch (url) {
-  | ["pets"] => <PetsPage />
-  | _ => <h1>{React.string("home")}</h1>
-  }
-};
 
 [@react.component]
 let make = () => {

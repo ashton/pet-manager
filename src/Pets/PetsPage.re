@@ -35,7 +35,9 @@ let make = () => {
     </div>
 
     <div className="control">
-      <button className="button is-primary">{s("Cadastrar Pet")}</button>
+      <button onClick={_e => ReasonReactRouter.push("pets/novo")} className="button is-primary">
+        {s("Cadastrar Pet")}
+      </button>
     </div>
   </>
 }
