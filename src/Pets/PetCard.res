@@ -1,15 +1,15 @@
-open JSXHelpers;
-open PetsStyles;
+open JSXHelpers
+open PetsStyles
 
-let getIconByKind = (pet: PetsModel.pet) => 
+let getIconByKind = (pet: PetsModel.pet) =>
   switch pet.kind {
   | Dog => "fa-dog"
   | Cat => "fa-cat"
-  };
+  }
 
-[@react.component]
+@react.component
 let make = (~pet: PetsModel.pet) => {
-  let age = PetsModel.getAge(pet);
+  let age = PetsModel.getAge(pet)
 
   <div className="column is-one-third">
     <div className=card>
@@ -22,18 +22,14 @@ let make = (~pet: PetsModel.pet) => {
           </div>
           <div className="media-content">
             <div className="content">
-              <p className="title is-4">{s(pet.name)}</p>
-              <p className="subtitle is-6">{s(pet.breed)}</p>
+              <p className="title is-4"> {s(pet.name)} </p>
+              <p className="subtitle is-6"> {s(pet.breed)} </p>
               <ul>
                 <li>
-                  <span>{s(age->Js.Int.toString ++ pluralize(age, " ano", " anos"))}</span>
+                  <span> {s(age->Js.Int.toString ++ pluralize(age, " ano", " anos"))} </span>
                 </li>
-                <li>
-                  <span>{s("porte " ++ PetsModel.Size.toString(pet.size))}</span>
-                </li>
-                <li>
-                  <span>{s(Js.Float.toFixed(pet.weight) ++ " kg")}</span>
-                </li>
+                <li> <span> {s("porte " ++ PetsModel.Size.toString(pet.size))} </span> </li>
+                <li> <span> {s(Js.Float.toFixed(pet.weight) ++ " kg")} </span> </li>
               </ul>
             </div>
           </div>
@@ -41,4 +37,4 @@ let make = (~pet: PetsModel.pet) => {
       </div>
     </div>
   </div>
-}; 
+}
