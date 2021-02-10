@@ -64,7 +64,8 @@ let make = () => {
       </div>
       <div className="field">
         <div className="control">
-          <label className="label"> {s("Data de nascimento")} </label> <input />
+          <label className="label"> {s("Data de nascimento")} </label>
+          <input className="input" type_="text" placeholder="aniversario do pet" />
         </div>
       </div>
     </div>
