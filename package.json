@@ -1,0 +1,47 @@
+{
+  "name": "pet-manager",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "vite build",
+    "clean": "rescript clean -with-deps",
+    "format": "rescript format -all",
+    "serve": "vite preview",
+    "start": "vite",
+    "test": "vitest"
+  },
+  "keywords": [
+    "rescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@davesnx/styled-ppx": "^0.34.1",
+    "@glennsl/rescript-fetch": "^0.2.0",
+    "@greenlabs/ppx-spice": "^0.1.12",
+    "@mobily/rescript-date": "^2.1.0",
+    "@preact/signals-react": "^1.2.2",
+    "@rescript/core": "^0.1.0",
+    "@rescript/react": "^0.11.0",
+    "@rescriptbr/react-query": "^1.0.0",
+    "@tanstack/react-query": "^4.24.10",
+    "bs-css": "^16.0.0",
+    "bs-css-emotion": "^5.0.0",
+    "esbuild": "0.17.10",
+    "re-formality": "^4.0.0-beta.18",
+    "react-detect-click-outside": "^1.1.7",
+    "react-query": "^3.39.3",
+    "rescript": "*",
+    "rescript-preact-signals": "^0.1.0",
+    "rescript-webapi": "^0.7.0"
+  },
+  "devDependencies": {
+    "@jihchi/vite-plugin-rescript": "^5.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "jsdom": "^21.1.0",
+    "rescript-vitest": "^1.1.0",
+    "vite": "^4.1.4",
+    "vitest": "^0.28.5"
+  }
+}

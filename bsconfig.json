@@ -1,0 +1,41 @@
+{
+  "name": "pet-manager",
+  "sources":[{
+    "dir": "src",
+    "subdirs": true
+  }, {
+    "dir":"tests",
+    "type": "dev",
+    "subdirs": true
+  }],
+  "package-specs": {
+    "module": "es6",
+    "in-source": true
+  },
+  "suffix": ".bs.js",
+  "jsx": {"version": 4, "mode": "automatic"},
+  "bs-dependencies": [ 
+    "@rescript/react",
+    "@rescript/core",
+    "rescript-webapi",
+    "@rescriptbr/react-query",
+    "@glennsl/rescript-fetch",
+    "re-formality",
+    "@mobily/rescript-date",
+    "@greenlabs/ppx-spice",
+    "bs-css",
+    "bs-css-emotion",
+    "rescript-preact-signals"
+  ],
+  "bs-dev-dependencies": [
+    "rescript-vitest"
+  ],
+  "bsc-flags": [
+    "-open RescriptCore"
+  ],
+  "ppx-flags": [
+    "re-formality/ppx",
+    "@davesnx/styled-ppx/ppx",
+    "@greenlabs/ppx-spice/ppx"
+  ]
+}
