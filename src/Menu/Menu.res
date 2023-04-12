@@ -1,18 +1,31 @@
 let s = React.string
 
+let menus = [Page.dasboardPage, Page.petsListPage]
+
 module MenuItem = {
   @react.component
-  let make = (~active: bool, ~page: Page.t) => {
-    let activeClassName = active ? " active" : ""
+  let make = (~page: module(Page.PageModule)) => {
+    open PreactSignals.Core
+    open PreactSignals.ReactHooks
 
-    <li className={`menu${activeClassName}`}>
+    let module(PageModule) = page
+
+    let isPageActive = useComputed(() => {
+      let module(CurrentPageModule) = val(AppState.signal).currentPage
+
+      CurrentPageModule.Page.path == PageModule.Page.path
+    })
+    
+    let activeClassName = useComputed(() => isPageActive->val ? " active" : "")
+
+    <li className={`menu${activeClassName->val}`}>
       <a
-        onClick={_ => Router.goTo(page)}
-        ariaExpanded={active}
-        className={`dropdown-toggle${activeClassName}`}>
+        onClick={(_) => Router.goTo(page)}
+        ariaExpanded={isPageActive->val}
+        className={`dropdown-toggle${activeClassName->val}`}>
         <div>
-          {page.icon}
-          <span> {React.string(page.label)} </span>
+          {PageModule.Page.menuIcon}
+          <span> {React.string(PageModule.Page.label)} </span>
         </div>
       </a>
     </li>
@@ -21,19 +34,14 @@ module MenuItem = {
 
 @react.component
 let make = () => {
-  open PreactSignals.Core
-
-  let isPageActive = (page: Page.t) =>
-    PreactSignals.ReactHooks.useComputed(() => val(AppState.signal).currentPage.page == page.page)
-
   <div className="sidebar-wrapper sidebar-theme">
     <nav id="sidebar">
       <div className="nav-item sidebar-toggle">
         <div className="btn-toggle sidebarCollapse" />
       </div>
       <ul className="list-unstyled menu-categories ps">
-        {Page.pages
-        ->Array.map(page => <MenuItem active={isPageActive(page)->val} page />)
+        {menus
+        ->Array.map(page => <MenuItem page />)
         ->React.array}
       </ul>
     </nav>

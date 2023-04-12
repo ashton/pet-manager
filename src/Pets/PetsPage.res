@@ -42,7 +42,7 @@ let renderPets = (pets: array<PetsModel.t>) => {
     }
 
   pets->Array.map(pet => {
-    <div key={pet.id->Option.getExn} className="col-xl-4 layout-spacing">
+    <div className="col-xl-4 layout-spacing">
       <div className="card">
         <div className=Styles.cardBody>
           <div className="avatar avatar-sm">
@@ -82,7 +82,6 @@ let handleError = (error: string) => [
 let make = () => {
   open! QueryUtils
 
-
   let queryResult = PetsQuery.fetchAll()->handleResult
 
   let cards = switch queryResult {
@@ -94,4 +93,10 @@ let make = () => {
   }
 
   <div className="row"> {cards->React.array} </div>
+}
+
+module Page = {
+  let menuIcon = <PetSVG />
+  let label = "Pets"
+  let path = "pets"
 }

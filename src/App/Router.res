@@ -5,17 +5,21 @@ let isAt = (url: RescriptReactRouter.url, expected: string): bool => {
   }
 }
 
-let goTo = (menu: Page.t) => {
-  RescriptReactRouter.push(`/${menu.path}`)
+let goTo = (page: module(Page.PageModule)) => {
+  let module(PageModule) = page
+  RescriptReactRouter.push(`/${PageModule.Page.path}`)
 }
 
-let urlToPage = (url: RescriptReactRouter.url) => {
+let urlToPage = (url: RescriptReactRouter.url): module(Page.PageModule) => {
   switch url.path {
-    | list{"pets"} => Page.petsPage
-    | list{"events"} => Page.eventsPage
-    | list{"medical-records"} => Page.recordPage
-    | _ => Page.dashboardPage
+  | list{"pets"} => Page.petsListPage
+  /* | list{"events"} => Page.eventsPage */
+  /* | list{"medical-records"} => Page.recordPage */
+  | _ => Page.dasboardPage
   }
 }
 
-let renderContent = (url: RescriptReactRouter.url) => urlToPage(url).component
+let renderContent = (url: RescriptReactRouter.url) => {
+  let module(Page) = urlToPage(url)
+  <Page />
+}

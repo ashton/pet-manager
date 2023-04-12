@@ -19,9 +19,11 @@ let renderBreadcrumbItem = (item: breadcrumbItem): React.element => {
 @react.component
 let make = () => {
   open PreactSignals.Core
-  let breadcrumb = PreactSignals.ReactHooks.useComputed(() =>
-    val(AppState.signal).currentPage.breadcrumb
-  )
+
+  let breadcrumb = PreactSignals.ReactHooks.useComputed(() => {
+    let module(Page) = val(AppState.signal).currentPage
+    Page.Breadcrumb.path
+  })
 
   <nav className="breadcrumb-style-one" ariaLabel="breadcrumb">
     <ol className="breadcrumb">

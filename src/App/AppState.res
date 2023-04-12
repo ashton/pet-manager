@@ -1,6 +1,6 @@
 type t = {
   selectedPet: option<PetsModel.t>,
-  currentPage: Page.t,
+  currentPage: module(Page.PageModule),
 }
 
 let initialUrl = RescriptReactRouter.dangerouslyGetInitialUrl()
@@ -17,12 +17,12 @@ let setSelectedPet = (pet: PetsModel.t) => {
   signal->set({...signal->val, selectedPet: Some(pet)})
 }
 
-let setCurrentPage = (page: Page.t) => {
+let setCurrentPage = (page: module(Page.PageModule)) => {
   open PreactSignals.Core
 
   signal->set({...signal->val, currentPage: page})
 }
 
-let _ = RescriptReactRouter.watchUrl((url: RescriptReactRouter.url) =>
+let _ = RescriptReactRouter.watchUrl((url: RescriptReactRouter.url) => {
   url->Router.urlToPage->setCurrentPage
-)
+})
