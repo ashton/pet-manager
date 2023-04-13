@@ -1,31 +1,28 @@
 let s = React.string
 
-let menus = [Page.dasboardPage, Page.petsListPage]
-
 module MenuItem = {
   @react.component
-  let make = (~page: module(Page.PageModule)) => {
+  let make = (~route: AppRoutes.t) => {
     open PreactSignals.Core
     open PreactSignals.ReactHooks
 
-    let module(PageModule) = page
+    let module(PageModule) = route.page
 
-    let isPageActive = useComputed(() => {
-      let module(CurrentPageModule) = val(AppState.signal).currentPage
-
-      CurrentPageModule.Page.path == PageModule.Page.path
+    let isActive = useComputed(() => {
+      let currentRoute = AppState.currentPage->val
+      currentRoute == route.pageType
     })
-    
-    let activeClassName = useComputed(() => isPageActive->val ? " active" : "")
 
-    <li className={`menu${activeClassName->val}`}>
+    let activeClassName = useComputed(() => isActive->val ? " active" : "")
+
+    <li key=`menu-${PageModule.label}` className={`menu${activeClassName->val}`}>
       <a
-        onClick={(_) => Router.goTo(page)}
-        ariaExpanded={isPageActive->val}
+        onClick={(_) => Router.navigate(route.urlPath)}
+        ariaExpanded={isActive->val}
         className={`dropdown-toggle${activeClassName->val}`}>
         <div>
-          {PageModule.Page.menuIcon}
-          <span> {React.string(PageModule.Page.label)} </span>
+          {PageModule.menuIcon}
+          <span> {React.string(PageModule.label)} </span>
         </div>
       </a>
     </li>
@@ -40,8 +37,9 @@ let make = () => {
         <div className="btn-toggle sidebarCollapse" />
       </div>
       <ul className="list-unstyled menu-categories ps">
-        {menus
-        ->Array.map(page => <MenuItem page />)
+        {AppRoutes.routes
+        ->Array.filter(route => route.isMenu)
+        ->Array.map(route => <MenuItem route />)
         ->React.array}
       </ul>
     </nav>

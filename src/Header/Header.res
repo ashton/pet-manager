@@ -3,11 +3,7 @@ open ReactUtils
 
 module PetsSelectbox = {
   let renderPetOption = (onSelect: PetsModel.t => unit, pet: PetsModel.t) => {
-    <a
-      key={`pet-option-${pet.name}`}
-      onClick={_ => onSelect(pet)}
-      className="dropdown-item"
-      href="javascript:void(0);">
+    <a onClick={_ => onSelect(pet)} className="dropdown-item" href="javascript:void(0);">
       {s(pet.name)}
     </a>
   }
@@ -67,8 +63,16 @@ module PetsSelectbox = {
 
 @react.component
 let make = () => {
+  open PreactSignals.Core
+  open PreactSignals.ReactHooks
+
   let queryResult = PetsQuery.fetchAll()->handleResult
   let onSelect = AppState.setSelectedPet
+  let breadcrumbPathSignal = useComputed(() => {
+    let route = AppState.currentPage->val->AppRoutes.byType
+    let module(PageModule: Page.T) = route.page
+    PageModule.breadcrumbPath()
+  })
 
   <div className="secondary-nav">
     <div className="breadcrumbs-container">
@@ -79,7 +83,7 @@ let make = () => {
         <div className="d-flex breadcrumb-content">
           <div className="page-header">
             <div className="page-title" />
-            <Breadcrumb />
+            <Breadcrumb path={breadcrumbPathSignal->val} />
           </div>
         </div>
         <ul className="navbar-nav flex-row ms-auto breadcrumb-action-dropdown">

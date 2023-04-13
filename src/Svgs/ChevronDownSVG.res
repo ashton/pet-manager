@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  let polyline = <polyline key="chevron-svg-polyline" points="6 9 12 15 18 9"></polyline>
+  let polyline = <polyline points="6 9 12 15 18 9"></polyline>
 
   React.cloneElement(
     <svg />,

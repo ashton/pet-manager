@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  let polyline = <polyline key="health-svg-polyline" points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+  let polyline = <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
 
   React.cloneElement(
     <svg />,

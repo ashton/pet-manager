@@ -1,24 +1,14 @@
-type pageType = Dashboard | PetList | Events | MedicalRecord
-
-module type BreadcrumbModule = {
-  let path: BreadcrumbModel.breadcrumbPath
-}
-
-module type PageMetaModule = {
-  let label: string
-
+module type T = {
+  let render: () => React.element
   let menuIcon: React.element
-
-  let path: string
+  let label: string
+  let breadcrumbPath: () => BreadcrumbModel.breadcrumbPath
 }
 
-module type PageModule = {
-  @react.component
-  let make: unit => React.element
+module Make = (Page: PageInterface.T): T => {
+  let render = () => <Page />
 
-  module Breadcrumb: BreadcrumbModule
-  module Page: PageMetaModule
+  let menuIcon = Page.Meta.menuIcon
+  let label = Page.Meta.label
+  let breadcrumbPath = () => Page.Meta.breadcrumb
 }
-
-let petsListPage: module(PageModule) = module(PetsPage)
-let dasboardPage: module(PageModule) = module(DashboardPage)

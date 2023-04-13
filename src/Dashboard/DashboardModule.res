@@ -1,11 +1,8 @@
-module Page = {
+module Meta = {
   let label = "Dashboard"
   let menuIcon = <HomeSVG />
-  let path = ""
-}
-
-module Breadcrumb = {
-  let path: BreadcrumbModel.breadcrumbPath = [
+  let urlPath = list{""}
+  let breadcrumb: BreadcrumbModel.breadcrumbPath = [
     {name: "Bixin", active: false, url: None},
     {name: "Dashboard", active: true, url: Some("/")},
   ]

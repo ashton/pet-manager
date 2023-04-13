@@ -1,3 +1,13 @@
+module Meta = {
+  let menuIcon = <PetSVG />
+  let label = "Pets"
+  let urlPath = list{"pets"}
+  let breadcrumb: BreadcrumbModel.breadcrumbPath = [
+    {name: "Bixin", active: false, url: Some("/")},
+    {name: "Pets", active: true, url: Some("/pets")},
+  ]
+}
+
 module Styles = {
   open CssJs
 
@@ -23,13 +33,6 @@ module Styles = {
 
     merge(. ["fas", style(. [color]), `fa-${sexIconName(sex)}`, "fa-lg"])
   }
-}
-
-module Breadcrumb = {
-  let path: BreadcrumbModel.breadcrumbPath = [
-    {name: "Bixin", active: false, url: Some("/")},
-    {name: "Pets", active: true, url: Some("/pets")},
-  ]
 }
 
 let renderPets = (pets: array<PetsModel.t>) => {
@@ -84,19 +87,20 @@ let make = () => {
 
   let queryResult = PetsQuery.fetchAll()->handleResult
 
-  let cards = switch queryResult {
+  let content = switch queryResult {
   | Loaded(pets) => renderPets(pets)
   | Failure(Some(error)) => handleError(error)
   | Failure(None) => handleError("Unexpected error")
-  | NotLoaded => [React.null]
-  | Loading => [React.null]
+  | NotLoaded => [<div />]
+  | Loading => [<Loader />]
   }
 
-  <div className="row"> {cards->React.array} </div>
-}
-
-module Page = {
-  let menuIcon = <PetSVG />
-  let label = "Pets"
-  let path = "pets"
+  <div className="container">
+    <div className="row"> {content->React.array} </div>
+    <div className="row justify-content-end">
+      <button className="btn btn-success btn-icon btn-rounded btn-lg" onClick={_ => ()}>
+        <RoundedPlusSVG />
+      </button>
+    </div>
+  </div>
 }
