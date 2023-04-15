@@ -1,3 +1,5 @@
+%%raw("import 'node-snackbar/dist/snackbar.min.css'")
+
 @react.component
 let make = () => {
   open PreactSignals.Core

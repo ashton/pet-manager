@@ -4,7 +4,7 @@ type remoteData<'a, 'b> =
   | Loaded('a)
   | Failure('b)
 
-let handleResult = (result: ReactQuery.queryResult<Js.Exn.t, 'queryResult>): remoteData<
+let handleQueryResult = (result: ReactQuery.queryResult<Js.Exn.t, 'queryResult>): remoteData<
   'queryData,
   option<string>,
 > =>
@@ -15,3 +15,5 @@ let handleResult = (result: ReactQuery.queryResult<Js.Exn.t, 'queryResult>): rem
     error->Js.Nullable.toOption->Option.getExn->Js.Exn.message->Failure
   | _ => Failure(Some("unknown error"))
   }
+
+let mutationOnError = Some((error, _, _) => Promise.resolve(Error(error)))

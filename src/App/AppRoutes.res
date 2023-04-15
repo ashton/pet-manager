@@ -26,9 +26,9 @@ let notFoundRoute = {
 }
 
 let routes: array<t> = [
-  {pageType: Dashboard, urlPath: list{}, page: module(DashboardPage), isMenu: true},
-  {pageType: PetList, urlPath: list{"pets"}, page: module(PetsListPage), isMenu: true},
-  {pageType: CreatePet, urlPath: list{"pets", "new"}, page: module(CreatePetPage), isMenu: false},
+  {pageType: Dashboard, urlPath: DashboardPage.urlPath, page: module(DashboardPage), isMenu: true},
+  {pageType: PetList, urlPath: PetsListPage.urlPath, page: module(PetsListPage), isMenu: true},
+  {pageType: CreatePet, urlPath: CreatePetPage.urlPath, page: module(CreatePetPage), isMenu: false},
   notFoundRoute,
 ]
 

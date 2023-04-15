@@ -13,7 +13,7 @@
     "in-source": true
   },
   "suffix": ".bs.js",
-  "jsx": {"version": 4, "mode": "automatic"},
+  "jsx": {"version": 4, "mode": "classic"},
   "bs-dependencies": [ 
     "@rescript/react",
     "@rescript/core",

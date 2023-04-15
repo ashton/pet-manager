@@ -66,7 +66,7 @@ let make = () => {
   open PreactSignals.Core
   open PreactSignals.ReactHooks
 
-  let queryResult = PetsQuery.fetchAll()->handleResult
+  let queryResult = PetsQuery.fetchAll()->handleQueryResult
   let onSelect = AppState.setSelectedPet
   let breadcrumbPathSignal = useComputed(() => {
     let route = AppState.currentPage->val->AppRoutes.byType

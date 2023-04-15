@@ -45,7 +45,7 @@ let renderPets = (pets: array<PetsModel.t>) => {
     }
 
   pets->Array.map(pet => {
-    <div className="col-xl-4 layout-spacing">
+    <div className="col-xl-3 col-md-4 col-sm-12 layout-spacing">
       <div className="card">
         <div className=Styles.cardBody>
           <div className="avatar avatar-sm">
@@ -85,7 +85,7 @@ let handleError = (error: string) => [
 let make = () => {
   open! QueryUtils
 
-  let queryResult = PetsQuery.fetchAll()->handleResult
+  let queryResult = PetsQuery.fetchAll()->handleQueryResult
 
   let content = switch queryResult {
   | Loaded(pets) => renderPets(pets)
@@ -95,12 +95,13 @@ let make = () => {
   | Loading => [<Loader />]
   }
 
-  <div className="container">
+  <div>
+    <button
+      className="btn btn-success btn-icon btn-rounded btn-lg position-absolute bottom-0 end-0 mb-4 me-4"
+      onClick={_ => Router.navigate(CreatePetModule.Meta.urlPath)}>
+      <RoundedPlusSVG />
+    </button>
+
     <div className="row"> {content->React.array} </div>
-    <div className="row justify-content-end">
-      <button className="btn btn-success btn-icon btn-rounded btn-lg" onClick={_ => ()}>
-        <RoundedPlusSVG />
-      </button>
-    </div>
   </div>
 }
